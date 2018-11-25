@@ -1,0 +1,48 @@
+\documentclass[14pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Proposta Inicial Para o Trabalho Final da Disciplina de Otimização Combinatória}
+\author{Bruno Santana Massena de Lima }
+\date{Novembro 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Formulação}
+
+\begin{gather*}
+\begin{aligned}
+\textup{max}\qquad \sum_{i\in[V]} v_i c_i\\
+\textup{s.t.}\qquad \sum_{i \in [V]} c_i w_i     &\leq U\\
+                    f_{ij}                      &\leq M E_{ij}, & \forall i,j \in [V]\\
+                    f_{ij}                      &\leq M c_i,    & \forall i,j \in [V]\\
+                    f_{ij}                      &\leq M c_j,    & \forall i,j \in [V]\\
+                    \sum_{j \in [V]} f_{ij} + 1 &\leq \sum_{j \in [V]} f_{ji} + M(s_i + (1 - c_i)), & \forall i \in [V]\\
+                    \sum_{j \in [V]} f_{ij} + 1 &\geq \sum_{j \in [V]} f_{ji} - M(s_i + (1 - c_i)), & \forall i \in [V]\\
+                    \sum_{j \in [V]} f_{ij}     &\geq \sum_{i \in [V]} c_i - 1 - M(1 - s_i), & \forall i \in [V]\\
+                    \sum_{i \in [V]} f_{ij}     &\leq M(1 - s_j), & \forall j \in [V]\\
+                    \sum_{i \in [V]} s_i        &= 1\\
+                    s_i                         &\leq c_i, & \forall i \in [V]\\
+\end{aligned}
+\end{gather*}
+
+Nesta formulação:\\
+\hspace*{5ex} E representa a matriz de adjacência do grafo de entrada\\
+\hspace*{5ex} V representa a quantidade de vértices do grafo de entrada\\
+\hspace*{5ex} U representa a capacidade máxima da mochila\\
+\hspace*{5ex} $v_i$ representa o valor do vértice \textit{i}\\
+\hspace*{5ex} $w_i$ representa o peso do vértice \textit{i}\\
+\hspace*{5ex} $c_i$ indica se o vértice \textit{i} foi escolhido (1) ou não (0)\\
+\hspace*{5ex} $s_i$ indica se o vértice \textit{i} é o vértice de origem do fluxo (1) ou não (0)\\
+\hspace*{5ex} $f_{ij}$ representa o fluxo do vértice \textit{i} ao vértice \textit{j}\\
+
+\section{Definição dos elementos do algoritmo}
+aaaaaaaaaaaaaaa djisdjisd djsidj
+
+
+\end{document}

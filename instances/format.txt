@@ -1,0 +1,10 @@
+Primeira linha: n m U
+    n: quantidade de vértices do grafo
+    m: quantidade de arestas do grafo
+    U: capacidade máxima da mochila
+
+Segunda linha: pesos dos n vértices
+
+Terceira linha: valores dos n vértices
+
+Demais linhas: m linhas com 2 índices de vértices cada (começando em 0), representando as arestas
