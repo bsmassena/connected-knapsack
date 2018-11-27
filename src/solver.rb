@@ -20,10 +20,9 @@ class Solver
         generate_initial_solution
         time = Time.now - start
 
-        puts "\nSolved in #{time.round(2)} seconds"
-        puts "Max weight: #{@instance.max_weight}"
-        puts "Cost: #{@cost}"
-        puts "Value: #{@value}\n"
+        puts "Solved in #{time.round(2)} seconds"
+        puts "Cost: #{@cost}/#{@instance.max_weight}"
+        puts "Value: #{@value}"
     end
 
     private
@@ -48,7 +47,6 @@ class Solver
             add_to_solution v
             v = cb_sorted.find { |v| can_be_added(v) }
         end
-        @value
     end
 
     def can_be_added(v)
@@ -71,6 +69,7 @@ class Solver
         @value += @instance.values[v]
     end
     
+    # Methods used to save object state. It's useful for making new solutions and rollback if they're trash
     def begin
         @solution_dump = @solution.clone
         @cost_dump = @cost
