@@ -1,6 +1,10 @@
 \documentclass[14pt]{extarticle}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{indentfirst}
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
 
 \title{Proposta Inicial Para o Trabalho Final da Disciplina de Otimização Combinatória}
 \author{Bruno Santana Massena de Lima }
@@ -13,8 +17,9 @@
 
 \maketitle
 
-\section{Formulação}
-
+\section{Problema da Mochila Conexa}
+\noindent
+Formulação:\\
 \begin{gather*}
 \begin{aligned}
 \textup{max}\qquad \sum_{i\in[V]} v_i c_i\\
@@ -27,22 +32,49 @@
                     \sum_{j \in [V]} f_{ij}     &\geq \sum_{i \in [V]} c_i - 1 - M(1 - s_i), & \forall i \in [V]\\
                     \sum_{i \in [V]} f_{ij}     &\leq M(1 - s_j), & \forall j \in [V]\\
                     \sum_{i \in [V]} s_i        &= 1\\
-                    s_i                         &\leq c_i, & \forall i \in [V]\\
+                    0 &\leq c_i \leq 1, & \forall i \in [V]\\
+                    0 &\leq s_i \leq 1, & \forall i \in [V]\\
+                    f_{ij}                      &\geq 0, & \forall i,j \in [V]\\
 \end{aligned}
 \end{gather*}
-
+\\
+\\
+\\
+\noindent
 Nesta formulação:\\
-\hspace*{5ex} E representa a matriz de adjacência do grafo de entrada\\
-\hspace*{5ex} V representa a quantidade de vértices do grafo de entrada\\
-\hspace*{5ex} U representa a capacidade máxima da mochila\\
-\hspace*{5ex} $v_i$ representa o valor do vértice \textit{i}\\
-\hspace*{5ex} $w_i$ representa o peso do vértice \textit{i}\\
-\hspace*{5ex} $c_i$ indica se o vértice \textit{i} foi escolhido (1) ou não (0)\\
-\hspace*{5ex} $s_i$ indica se o vértice \textit{i} é o vértice de origem do fluxo (1) ou não (0)\\
-\hspace*{5ex} $f_{ij}$ representa o fluxo do vértice \textit{i} ao vértice \textit{j}\\
+\hspace*{2ex} E representa a matriz de adjacência do grafo de entrada\\
+\hspace*{2ex} V representa a quantidade de vértices do grafo de entrada\\
+\hspace*{2ex} U representa a capacidade máxima da mochila\\
+\hspace*{2ex} $v_i$ representa o valor do vértice \textit{i}\\
+\hspace*{2ex} $w_i$ representa o peso do vértice \textit{i}\\
+\hspace*{2ex} $c_i$ indica se o vértice \textit{i} foi escolhido (1) ou não (0)\\
+\hspace*{2ex} $s_i$ indica se o vértice \textit{i} é o vértice de origem do fluxo (1) ou não (0)\\
+\hspace*{2ex} $f_{ij}$ representa o fluxo do vértice \textit{i} ao vértice \textit{j}\\
 
-\section{Definição dos elementos do algoritmo}
-aaaaaaaaaaaaaaa djisdjisd djsidj
+\section{Elementos do Simulated Annealing}
+
+A \textbf{representação de uma solução} se dará por uma lista de inteiros, cada um representando um item/vértice escolhido pertencente à instância do problema.
+
+A \textbf{solução inicial} será feita de forma aleatória. O algortimo irá selecionar um vértice inicial com peso menor que a capacidade máxima da mochila. A partir disso, o algoritmo irá encontrar vértices adjacentes aos já adicionados na solução e adicioná-los à mesma. Este processo se repetirá até que não seja possível adicionar mais vértices à solução sem que o peso total dos vértices ultrapasse a capacidade máxima da mochila. Além disso, também penso em implementar outros métodos de escolha de solução inicial, algo como uma escolha gulosa, ou \textit{best-fit/worst-fit}
+
+\textbf{Vizinhanças:} Inicialmente, a vizinhança será aleatória. Será selecionado um item da solução atual para ser removido e um item para ser adicionado. Caso a solução gerada seja factível, ela será retornada. Caso contrário, o precesso será repetido. Para diversificar a quantidade de itens na mochila, também pode ocorrer de algum dos vértices não ser escolhido, ou seja, um item será adicionado sem a necessidade de remover outro, ou vice-versa.
+Além desta, também pretendo implementar outros tipos de vizinhanças, e discutir qual obteve melhores resultados no relatório final.
+
+\textbf{Temperaturas:} Para definir as temperaturas inicial e final, usarei os métodos descritos nas notas de aula:
+
+''Exemplo 10.2 (Temperatura inicial)
+Define uma probabilidade pi
+Executa uma versão rápida (I pequeno) do algoritmo
+para determinar uma temperatura inicial tal que um movimento é aceito
+com probabilidade pi
+
+Exemplo 10.3 (Temperatura final)
+Define uma probabilidade pf
+Para cada nível de temperatura em que os movimentos
+foram aceitos com probabilidade menos que pf
+incrementa um contador.
+Zera o contador caso uma nova melhor solução é encontrada. Caso o contador
+chega em 5, termina.''
 
 
 \end{document}
